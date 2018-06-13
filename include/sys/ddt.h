@@ -172,7 +172,7 @@ typedef struct ddt_ops {
 	    dmu_tx_t *tx);
 	int (*ddt_op_walk)(objset_t *os, uint64_t object, ddt_entry_t *dde,
 	    uint64_t *walk);
-    uint64_t (*ddt_op_count)(objset_t *os, uint64_t object);
+    int (*ddt_op_count)(objset_t *os, uint64_t object, uint64_t *count);
 } ddt_ops_t;
 
 #define	DDT_NAMELEN	80
@@ -181,8 +181,8 @@ extern void ddt_object_name(ddt_t *ddt, enum ddt_type type,
     enum ddt_class _class, char *name);
 extern int ddt_object_walk(ddt_t *ddt, enum ddt_type type,
     enum ddt_class _class, uint64_t *walk, ddt_entry_t *dde);
-extern uint64_t ddt_object_count(ddt_t *ddt, enum ddt_type type,
-	enum ddt_class _class);
+extern int ddt_object_count(ddt_t *ddt, enum ddt_type type,
+	enum ddt_class _class, uint64_t *count);
 extern int ddt_object_info(ddt_t *ddt, enum ddt_type type,
     enum ddt_class _class, dmu_object_info_t *);
 extern boolean_t ddt_object_exists(ddt_t *ddt, enum ddt_type type,
